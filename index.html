@@ -12,6 +12,8 @@
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
         integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
         crossorigin=""></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <style>
         body {
             padding: 0;
@@ -41,6 +43,18 @@
                 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             id: 'mapbox.streets'
         }).addTo(mymap);
+
+        let url = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-09-23&minmagnitude=1';
+        $.get(url, function (data) {
+            console.log(data);
+            for (let index in data.features) {
+                let event = data.features[index];
+                L.marker({
+                    lat: event.geometry.coordinates[1],
+                    lng: event.geometry.coordinates[0]
+                }).addTo(mymap);
+            }
+        });
 
     </script>
 </body>
