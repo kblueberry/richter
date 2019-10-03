@@ -12,15 +12,20 @@ L.tileLayer(
   }
 ).addTo(mymap);
 
+var markers = L.markerClusterGroup();
+
 let url =
   "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-09-23&minmagnitude=1";
 $.get(url, function(data) {
   console.log(data);
   for (let index in data.features) {
     let event = data.features[index];
+
     L.marker({
       lat: event.geometry.coordinates[1],
       lng: event.geometry.coordinates[0]
-    }).addTo(mymap);
+    }).addTo(markers);
   }
 });
+
+mymap.addLayer(markers);
