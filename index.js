@@ -16,13 +16,20 @@ let markers = L.markerClusterGroup();
 
 let url =
   "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-09-23&minmagnitude=1";
-$.get(url, data => {
-  data.features.forEach(event => {
-    L.marker({
+$.get(url, function(response) {
+  let maxMag = 0;
+  response.features.forEach(event => {
+    let marker = L.marker({
       lat: event.geometry.coordinates[1],
       lng: event.geometry.coordinates[0]
-    }).addTo(markers);
+    });
+    marker.addTo(markers);
+    marker.bindPopup("<p>Magnitude: " + event.properties.mag + "</p>");
+    if (event.properties.mag > maxMag) {
+      maxMag = event.properties.mag;
+    }
   });
+  console.log(maxMag);
 });
 
 mymap.addLayer(markers);
