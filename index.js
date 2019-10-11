@@ -24,7 +24,13 @@ $.get(url, function(response) {
       lng: event.geometry.coordinates[0]
     });
     marker.addTo(markers);
-    marker.bindPopup("<p>Magnitude: " + event.properties.mag + "</p>");
+    marker.bindPopup(
+      "<p>Magnitude: " +
+        event.properties.mag +
+        "</p><br><p>Location: " +
+        event.properties.place +
+        "</p>"
+    );
     if (event.properties.mag > maxMag) {
       maxMag = event.properties.mag;
     }
