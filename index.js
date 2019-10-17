@@ -23,6 +23,9 @@ $.get(url, function(response) {
       lat: event.geometry.coordinates[1],
       lng: event.geometry.coordinates[0]
     });
+
+    const mag = event.properties.mag;
+
     marker.addTo(markers);
     marker.bindPopup(
       "<p>Magnitude: " +
@@ -33,6 +36,16 @@ $.get(url, function(response) {
     );
     if (event.properties.mag > maxMag) {
       maxMag = event.properties.mag;
+    }
+
+    if (mag < 3.5) {
+      console.log(`mag=${mag} --- green`);
+    } else if (mag < 5) {
+      console.log(`mag=${mag} --- yellow`);
+    } else if (mag < 6.5) {
+      console.log(`mag=${mag} --- orange`);
+    } else {
+      console.log(`mag=${mag} --- red`);
     }
   });
   console.log(maxMag);
