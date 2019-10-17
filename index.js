@@ -1,3 +1,23 @@
+function getMarkerIcon(mag) {
+  if (mag < 3.5) {
+    return L.AwesomeMarkers.icon({
+      markerColor: "green"
+    });
+  } else if (mag < 5) {
+    return L.AwesomeMarkers.icon({
+      markerColor: "yellow"
+    });
+  } else if (mag < 6.5) {
+    return L.AwesomeMarkers.icon({
+      markerColor: "orange"
+    });
+  } else {
+    return L.AwesomeMarkers.icon({
+      markerColor: "red"
+    });
+  }
+}
+
 let mymap = L.map("map").setView([47, 18], 4);
 
 L.tileLayer(
@@ -19,32 +39,12 @@ let url =
 $.get(url, function(response) {
   let maxMag = 0;
   response.features.forEach(event => {
-    let markerIcon;
-    const mag = event.properties.mag;
-    if (mag < 3.5) {
-      markerIcon = L.AwesomeMarkers.icon({
-        markerColor: "green"
-      });
-    } else if (mag < 5) {
-      markerIcon = L.AwesomeMarkers.icon({
-        markerColor: "yellow"
-      });
-    } else if (mag < 6.5) {
-      markerIcon = L.AwesomeMarkers.icon({
-        markerColor: "orange"
-      });
-    } else {
-      markerIcon = L.AwesomeMarkers.icon({
-        markerColor: "red"
-      });
-    }
-
     let marker = L.marker(
       {
         lat: event.geometry.coordinates[1],
         lng: event.geometry.coordinates[0]
       },
-      { icon: markerIcon }
+      { icon: getMarkerIcon(event.properties.mag) }
     );
 
     marker.addTo(markers);
