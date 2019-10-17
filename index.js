@@ -19,12 +19,33 @@ let url =
 $.get(url, function(response) {
   let maxMag = 0;
   response.features.forEach(event => {
-    let marker = L.marker({
-      lat: event.geometry.coordinates[1],
-      lng: event.geometry.coordinates[0]
-    });
-
+    let markerIcon;
     const mag = event.properties.mag;
+    if (mag < 3.5) {
+      markerIcon = L.AwesomeMarkers.icon({
+        markerColor: "green"
+      });
+    } else if (mag < 5) {
+      markerIcon = L.AwesomeMarkers.icon({
+        markerColor: "yellow"
+      });
+    } else if (mag < 6.5) {
+      markerIcon = L.AwesomeMarkers.icon({
+        markerColor: "orange"
+      });
+    } else {
+      markerIcon = L.AwesomeMarkers.icon({
+        markerColor: "red"
+      });
+    }
+
+    let marker = L.marker(
+      {
+        lat: event.geometry.coordinates[1],
+        lng: event.geometry.coordinates[0]
+      },
+      { icon: markerIcon }
+    );
 
     marker.addTo(markers);
     marker.bindPopup(
@@ -36,16 +57,6 @@ $.get(url, function(response) {
     );
     if (event.properties.mag > maxMag) {
       maxMag = event.properties.mag;
-    }
-
-    if (mag < 3.5) {
-      console.log(`mag=${mag} --- green`);
-    } else if (mag < 5) {
-      console.log(`mag=${mag} --- yellow`);
-    } else if (mag < 6.5) {
-      console.log(`mag=${mag} --- orange`);
-    } else {
-      console.log(`mag=${mag} --- red`);
     }
   });
   console.log(maxMag);
