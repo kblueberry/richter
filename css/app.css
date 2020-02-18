@@ -1,0 +1,33 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body,
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+.leaflet-popup-content p {
+  margin: 1px 0;
+}
+
+.leaflet-popup-content {
+  line-height: 1em;
+}
+
+.awesome-marker-icon-yellow {
+  background-position: -396px 0;
+}
+
+.container.controls {
+  position: absolute;
+  top: 10px;
+  left: 74px;
+  z-index: 1000;
+  background-color: azure;
+  padding: 10px;
+  border-color: red;
+}

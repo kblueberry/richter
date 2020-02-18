@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
         crossorigin="" />
@@ -17,41 +15,31 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css"
         integrity="sha256-LWhzWaQGZRsWFrrJxg+6Zn8TT84k0/trtiHBc6qcGpY=" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/leaflet.awesome-markers.css">
+    <link rel="stylesheet" href="css/app.css">
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
         integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
         crossorigin=""></script>
     <script src="js/leaflet.awesome-markers.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster-src.js"
         integrity="sha256-UxMFwvJ2+HaHDi1Ik5WYCuUcv1yS+hS5QYitB0ev0JQ=" crossorigin="anonymous"></script>
-    <style>
-        body {
-            padding: 0;
-            margin: 0;
-        }
 
-        html,
-        body,
-        #map {
-            height: 100%;
-            width: 100%;
-        }
-
-        .leaflet-popup-content p {
-            margin: 1px 0
-        }
-
-        .leaflet-popup-content {
-            line-height: 1em;
-        }
-
-        .awesome-marker-icon-yellow {
-            background-position: -396px 0;
-        }
-    </style>
 </head>
 
 <body>
     <div id="map"></div>
+    <div class="container controls">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary active">
+                <input type="radio" name="mapPeriod" autocomplete="off" checked value="7"> 7 днів
+            </label>
+            <label class="btn btn-secondary">
+                <input type="radio" name="mapPeriod" autocomplete="off" value="14"> 14 днів
+            </label>
+            <label class="btn btn-secondary">
+                <input type="radio" name="mapPeriod" autocomplete="off" value="30"> 30 днів
+            </label>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
