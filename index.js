@@ -71,8 +71,8 @@ let selectedDate = $.get(url, function(response) {
 
 mymap.addLayer(markers);
 
-$('input[type=radio][name=mapPeriod]').change(function() {
-  let valueOnClicked = $('input[name="mapPeriod"]:checked').val();
-  if (valueOnClicked === '7') {
-  }
-});
+// $('input[type=radio][name=mapPeriod]').change(function() {
+//   let valueOnClicked = $('input[name="mapPeriod"]:checked').val();
+//   if (valueOnClicked === '7') {
+//   }
+// });
